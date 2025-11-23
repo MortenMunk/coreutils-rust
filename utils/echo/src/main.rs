@@ -2,11 +2,17 @@ use std::env::args;
 
 fn main() {
     let mut output: Vec<String> = Vec::new();
+    let mut newline: bool = true;
     for arg in args().skip(1) {
-        output.push(arg);
+        if arg == "-n" {
+            newline = false;
+        } else {
+            output.push(arg);
+        }
     }
 
-    if !output.is_empty() {
-        println!("{}", output.join(" "));
+    print!("{}", output.join(" "));
+    if newline {
+        println!();
     }
 }
